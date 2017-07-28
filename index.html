@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Glorious Dog Display</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+	<script src="app.js"></script>
+</head>
+<body>
+<h1>glorious dogs</h1>
+<div ng-app="dogApp" ng-controller="DogAppController">
+	<h2>show me a...</h2>
+	<select ng-model="selectedBreed" ng-options="dog for dog in dogBreedList.message"></select>
+	<p ng-if="selectedBreed">you've selected to see an {{selectedBreed}}</p>
+</div>
+</body>
+</html>
