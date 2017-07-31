@@ -9,8 +9,11 @@
 <h1>glorious dogs</h1>
 <div ng-app="dogApp" ng-controller="DogAppController">
 	<h2>show me a...</h2>
-	<select ng-model="selectedBreed" ng-options="dog for dog in dogBreedList"></select>
+	<select ng-model="selectedBreed" ng-options="dog for dog in dogBreedList" ng-change="getImages()"></select>
 	<p ng-if="selectedBreed">you've selected to see a {{selectedBreed}}</p>
+	<div ng-repeat="img in dogImages">
+		<img ng-src="{{img}}">
+	</div>
 </div>
 </body>
 </html>
