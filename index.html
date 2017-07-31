@@ -2,18 +2,33 @@
 <html>
 <head>
 	<title>Glorious Dog Display</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+	<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
 	<script src="app.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="app.css">
 </head>
-<body>
-<h1>glorious dogs</h1>
-<div ng-app="dogApp" ng-controller="DogAppController">
-	<h2>show me a...</h2>
-	<select ng-model="selectedBreed" ng-options="dog for dog in dogBreedList" ng-change="getImages()"></select>
-	<p ng-if="selectedBreed">you've selected to see a {{selectedBreed}}</p>
-	<div ng-repeat="img in dogImages">
-		<img ng-src="{{img}}">
+<body class="text-center">
+<div ng-app="dogApp" ng-controller="DogAppController" class="container">
+	<h1>glorious dogs!</h1>
+	<div class="form-group">
+		<h2>show me a...</h2>
+		<h3><select ng-model="selectedBreed" ng-options="dog for dog in dogBreedList" ng-change="fetchImages()"></select></h3>
 	</div>
+	<div class="display" ng-if="selectedBreed">
+		<div class="row">
+			<div ng-repeat="img in currentImages | limitTo:2" class="col-sm-6">
+				<img ng-src="{{img}}" class="">
+			</div>
+		</div>
+		<div class="row">
+			<div ng-repeat="img in currentImages | limitTo:-2" class="col-sm-6">
+				<img ng-src="{{img}}" class="">
+			</div>
+		</div>
+		<ul uib-pagination total-items="dogImages.length" ng-model="pagination.currentPage" ng-change="pageChanged()" max-size="5" boundary-links="true" force-ellipses="true"></ul>
+	</div>	
 </div>
 </body>
 </html>
